@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="./lib/fx.js"></script>
+    <meta charset="UTF-8" />
+    <title>study!!</title>
+  </head>
+  <body>
+    <script>
+      const go = (...args) => reduce((a, f) => f(a), args);
+      const pipe =
+        (f, ...fs) =>
+        (...as) =>
+          go(f(...as), ...fs);
+
+      go(
+        1,
+        (a) => a + 1,
+        (a) => a + 100,
+        log
+      );
+
+      const f = pipe(
+        (a, b) => a + b,
+        (a) => a + 10,
+        (a) => a + 100
+      );
+      log(f(0, 1));
+    </script>
+  </body>
+</html>
